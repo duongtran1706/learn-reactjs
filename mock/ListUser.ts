@@ -1,11 +1,27 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Request, Response } from 'express';
 import { parse } from 'url';
-import { TableListItem, TableListParams } from '@/pages/TableList/data';
+import { UserListItem, UserListParams } from '@/pages/Admin/typing';
 
 // mock tableListDataSource
+const radomStatus = () => {
+  let data: string;
+  var switchData = Math.floor(Math.random() * 10) % 4;
+  switch (switchData) {
+    case 1:
+      data = 'PROCESSING';
+    case 2:
+      data = 'SUCCESS';
+    case 3:
+      data = 'ERROR';
+    default:
+      data = 'DEFAULT';
+  }
+
+  return data;
+};
 const genList = (current: number, pageSize: number) => {
-  const tableListDataSource: TableListItem[] = [];
+  const tableListDataSource: UserListItem[] = [];
 
   for (let i = 0; i < pageSize; i += 1) {
     const index = (current - 1) * 10 + i;
@@ -18,10 +34,10 @@ const genList = (current: number, pageSize: number) => {
         'https://gw.alipayobjects.com/zos/rmsportal/udxAbMEhpwthVVcjLXik.png',
       ][i % 2],
       name: `TradeCode ${index}`,
-      owner: '曲丽丽',
-      desc: '这是一段描述',
-      callNo: Math.floor(Math.random() * 1000),
-      status: Math.floor(Math.random() * 10) % 4,
+      owner: 'admin',
+      desc: `test list TradeCode ${index}`,
+      callNo: Math.floor(10000 + Math.random() * 1000),
+      status: radomStatus(),
       updatedAt: new Date(),
       createdAt: new Date(),
       progress: Math.ceil(Math.random() * 100),
@@ -39,7 +55,7 @@ function getRule(req: Request, res: Response, u: string) {
     realUrl = req.url;
   }
   const { current = 1, pageSize = 10 } = req.query;
-  const params = (parse(realUrl, true).query as unknown) as TableListParams;
+  const params = (parse(realUrl, true).query as unknown) as UserListParams;
 
   let dataSource = [...tableListDataSource].slice(
     ((current as number) - 1) * (pageSize as number),
@@ -96,7 +112,7 @@ function getRule(req: Request, res: Response, u: string) {
     pageSize,
     current: parseInt(`${params.currentPage}`, 10) || 1,
   };
-
+  console.log('result', result);
   return res.json(result);
 }
 
@@ -125,10 +141,10 @@ function postRule(req: Request, res: Response, u: string, b: Request) {
             'https://gw.alipayobjects.com/zos/rmsportal/udxAbMEhpwthVVcjLXik.png',
           ][i % 2],
           name,
-          owner: '曲丽丽',
+          owner: 'admin',
           desc,
           callNo: Math.floor(Math.random() * 1000),
-          status: Math.floor(Math.random() * 10) % 2,
+          status: radomStatus(),
           updatedAt: new Date(),
           createdAt: new Date(),
           progress: Math.ceil(Math.random() * 100),

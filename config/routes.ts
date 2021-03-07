@@ -37,23 +37,17 @@
                 path: '/admin',
                 name: 'admin',
                 icon: 'crown',
-                component: './Admin',
+                component: './Admin/index',
                 authority: ['admin'],
                 routes: [
                   {
-                    path: '/admin/sub-page',
-                    name: 'sub-page',
+                    path: '/admin/list',
+                    name: 'list',
                     icon: 'smile',
-                    component: './Welcome',
+                    component: './Admin/index',
                     authority: ['admin'],
                   },
                 ],
-              },
-              {
-                name: 'list.table-list',
-                icon: 'table',
-                path: '/list',
-                component: './TableList',
               },
               {
                 component: './404',

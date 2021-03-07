@@ -13,60 +13,60 @@ async function getFakeCaptcha(req: Request, res: Response) {
   return res.json('captcha-xxx');
 }
 
-// 代码中会兼容本地 service mock 以及部署站点的静态数据
+// service mock
 export default {
-  // 支持值为 Object 和 Array
+  // Object  Array
   'GET /api/currentUser': {
     name: 'Serati Ma',
     avatar: 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png',
     userid: '00000001',
     email: 'antdesign@alipay.com',
-    signature: '海纳百川，有容乃大',
-    title: '交互专家',
-    group: '蚂蚁集团－某某某事业群－某某平台部－某某技术部－UED',
+    signature: 'data',
+    title: 'admin',
+    group: 'test',
     tags: [
       {
         key: '0',
-        label: '很有想法的',
+        label: 'test1',
       },
       {
         key: '1',
-        label: '专注设计',
+        label: 'test2',
       },
       {
         key: '2',
-        label: '辣~',
+        label: 'test3',
       },
       {
         key: '3',
-        label: '大长腿',
+        label: 'test4',
       },
       {
         key: '4',
-        label: '川妹子',
+        label: 'test5',
       },
       {
         key: '5',
-        label: '海纳百川',
+        label: 'test6',
       },
     ],
     notifyCount: 12,
     unreadCount: 11,
-    country: 'China',
+    country: 'vietaname',
     geographic: {
       province: {
-        label: '浙江省',
+        label: 'test',
         key: '330000',
       },
       city: {
-        label: '杭州市',
+        label: 'test',
         key: '330100',
       },
     },
-    address: '西湖区工专路 77 号',
+    address: '77',
     phone: '0752-268888888',
   },
-  // GET POST 可省略
+  // GET POST
   'GET /api/users': [
     {
       key: '1',
